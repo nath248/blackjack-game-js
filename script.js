@@ -6,6 +6,8 @@ let message = "";
 let messageEl = document.getElementById("message-el");
 let sumEl = document.getElementById("sum-el");
 let cardsEl = document.getElementById("cards-el");
+let startOverButton = document.querySelector(".hide");
+let startButton = document.getElementById("startButton");
 let player = {
     name: "Nathaly",
     chips: 145
@@ -27,6 +29,8 @@ function getRandomCard() {
 };
 
 function startGame() {
+    startButton.classList.remove("hide");
+    startOverButton.classList.add("hide");
     isAlive = true;
     let firstCard = getRandomCard();
     let secondCard = getRandomCard();
@@ -46,9 +50,13 @@ function renderGame() {
     } else if (sum === 21) {
         message = "Yay!! You've got Blackjack!";
         hasBlackjack = true;
+        startOverButton.classList.remove("hide");
+        startButton.classList.add("hide");
     } else {
         message = "Oh No! You're out of the game!";
         isAlive = false;
+        startOverButton.classList.remove("hide");
+        startButton.classList.add("hide");
     }
     messageEl.textContent = message;
 };
